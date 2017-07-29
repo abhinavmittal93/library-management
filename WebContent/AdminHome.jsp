@@ -14,56 +14,68 @@
 	font-weight: bold;
 	font-size: 14px;
 }
+
+#name{
+	padding:10px;
+}
 -->
 </style>
 </head>
 <body>
-<%
-String userName = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userName = cookie.getValue();
-}
-}
-if(userName == null) response.sendRedirect("Login.jsp");;
-%>
-<div id="header">
-	<div id="logo">
-		<h1><jsp:include page="header.html"/> 
-	  </h1>
-		
-  </div>
-	<div id="menu">
-		<jsp:include page="adminoptions.html"/>  
+	<%
+		String userName = null;
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("user"))
+					userName = cookie.getValue();
+			}
+		}
+		if (userName == null)
+			response.sendRedirect("Login.jsp");
+		;
+	%>
+	<div id="header">
+		<div id="logo">
+			<h1><jsp:include page="header.html" />
+			</h1>
+
+		</div>
+		<div id="menu">
+			<jsp:include page="adminoptions.html" />
+		</div>
 	</div>
-</div>
-<div id="page">
-  <!-- end #content -->
-<div id="sidebar">
-		<div id="news" class="boxed1">
-			<blockquote>
-			  <blockquote>
-			    <h2 class="title">Registration</h2>
-		      </blockquote>
-		  </blockquote>
-	  </div>
-      <form action="" method="post" name="login">
-      
-        <div align="center" class="style1">
-		<% if(request.getParameter("status")!=null)
-		{
-		%>
-		<%=request.getParameter("status")%>
-        <%}%>
-        </div>
-      </form>
-  </div>
-<!-- end #sidebar -->
-</div>
-<!-- end #page -->
-<div id="footer">
-	<p>&nbsp;</p>
-</div>
+	<div id="page">
+		<!-- end #content -->
+		<div id="sidebar">
+			<div id="news" class="boxed1">
+				<blockquote>
+					<blockquote>
+						<h2 class="title">Registration</h2>
+					</blockquote>
+				</blockquote>
+			</div>
+			<form action="" method="post" name="login">
+			&nbsp;
+				<div id="name">Enter Name:&nbsp;<input type="text" name="Enter Name" />
+				</div>
+
+				<div align="center" class="style1">
+					<%
+						if (request.getParameter("status") != null) {
+					%>
+					<%=request.getParameter("status")%>
+					<%
+						}
+					%>
+				</div>
+			</form>
+		</div>
+		<!-- end #sidebar -->
+	</div>
+	<!-- end #page -->
+	<div id="footer">
+		<p>&nbsp;</p>
+	</div>
 </body>
 </html>
